@@ -55,6 +55,7 @@ Embed.parse = function(raw, callback) {
                 callback(null, raw += html);
             });
         } else {
+            console.log('Line 58');
             winston.warn('Encountered an error parsing Gfycat embed codes, not continuing... Stopping, basically');
             callback(null, raw);
         }
@@ -71,6 +72,7 @@ var gfyWebm = function(gfycatKey, callback) {
         if (response.statusCode === 200) {
             callback(null, JSON.parse(body));
         } else {
+            console.log('Line 75')
             callback(err);
         }
     });
