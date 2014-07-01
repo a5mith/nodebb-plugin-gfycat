@@ -76,10 +76,4 @@ var gfyWebm = function(gfycatKey, callback) {
     });
 };
 
-// Initial setup
-cache = require('lru-cache')({
-    maxAge: 1000*60*60*24,
-    max: 100
-});
-
 module.exports = Embed;

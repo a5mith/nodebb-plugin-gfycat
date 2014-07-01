@@ -30,7 +30,6 @@
   "_id": "nodebb-plugin-gfytest@0.0.1",
   "_from": "nodebb-plugin-gfytest@~0.0.1"
     "dependencies": {
-        "lru-cache": "^2.5.0",
         "request": "^2.34.0"
     }
 }
