@@ -1,81 +1,113 @@
-/* jshint indent: 4 */
+(function() {
+    "use strict";
+    /* jshint indent: 4 */
 
-var	request = require('request'),
-    async = module.parent.require('async'),
-    winston = module.parent.require('winston'),
-    S = module.parent.require('string'),
-    meta = module.parent.require('./meta'),
+    var	request = require('request'),
+        async = module.parent.require('async'),
+        winston = module.parent.require('winston'),
+        S = module.parent.require('string'),
+        meta = module.parent.require('./meta'),
 
-    gfycatRegex = /<a href="(?:https?:\/\/)?(?:gfycat\.com)\/?(.+)">.+<\/a>/g,
-    Embed = {},
-    cache, appModule;
+        GfyCatRegex = /<a href="(?:http|https?:\/\/)?(?:gfycat\.com)\/([\w\-_]+)">.+<\/a>/g,
+        Embed = {},
+        cache, appModule;
 
-Embed.init = function(app, middleware, controllers) {
-    appModule = app;
-};
+    var getGfyCat = function(gfyCatKey, callback) {
 
-Embed.parse = function(raw, callback) {
-    var gfycatKeys = [],
-        matches, cleanedText;
+        request.get({
+            url: 'www.gfycat.com/cajax/get/$1'
+        }, function (err, response, body) {
+            if (!err && response.statusCode === 200) {
+                var gfyData = JSON.parse(body).results[0];
 
-    cleanedText = S(raw).stripTags().s;
-    matches = cleanedText.match(gfycatRegex);
-
-    if (matches && matches.length) {
-        matches.forEach(function(match) {
-            if (gfycatKeys.indexOf(match) === -1) {
-                gfycatKeys.push(match);
-            }
-        });
-    }
-
-    async.map(gfycatKeys, function(gfycatKey, next) {
-        if (cache.has(gfycatKey)) {
-            next(null, cache.get(gfycatKey));
-        } else {
-            getgfy(gfycatKey, function(err, gfycatObj) {
-                if (err) {
-                    return next(err);
+                if (!gfyData) {
+                    return callback(null, {});
                 }
 
-                cache.set(gfycatKey, gfycatObj);
-                next(err, gfycatObj);
-            });
-        }
-    }, function(err, webmgfy) {
-        if (!err) {
-            // Filter out non-existant webms
-            webmgfy = webmgfy.filter(function(issue) {
-                return issue;
-            });
+                callback(null, {
+                    mp4Url: gfyData.mp4Url,
+                    webmUrl: gfyData.webmUrl,
+                    gifUrl: gfyData.gifUrl,
+                    width: gfyData.width,
+                    height: gfyData.height,
+                    gfyId: gfyData.gfyId,
+                    numFrames: gfyData.numFrames
+                });
+            } else {
+                callback(err);
+            }
+        });
+    };
 
-            appModule.render('partials/gfycat', {
-                webmgfy: webmgfy
-            }, function(err, html) {
-                callback(null, raw += html);
-            });
-        } else {
-            console.log('Line 58');
-            winston.warn('Encountered an error parsing Gfycat embed codes, not continuing... Stopping, basically');
-            callback(null, raw);
+    Embed.init = function(app, middleware, controllers, callback) {
+        function render(req, res, next) {
+            res.render('partials/gfycat-block', {});
         }
+
+        appModule = app;
+
+        callback();
+    };
+
+    Embed.parse = function(raw, callback) {
+        var gfyCatKeys = [],
+            matches, cleanedText;
+
+        cleanedText = S(raw).stripTags().s;
+        matches = cleanedText.match(gfyCatRegex);
+
+
+
+        if (matches && matches.length) {
+            matches.forEach(function(match) {
+                if (gfyCatKeys.indexOf(match) === -1) {
+                    gfyCatKeys.push(match);
+                }
+            });
+        }
+
+        async.map(gfyCatKeys, function(gfyCatKey, next) {
+            if (cache.has(gfyCatKey)) {
+                next(null, cache.get(gfyCatKey));
+            } else {
+                getGfyCat(gfyCatKey, function(err, gfyCatObj) {
+                    if (err) {
+                        return next(err);
+                    }
+
+                    cache.set(gfyCatKey, gfyCatObj);
+                    next(err, gfyCatObj);
+                });
+            }
+        }, function(err, gfycatinfo) {
+            if (!err) {
+                // Filter
+                gfycatinfo = gfycatinfo.filter(function(issue) {
+                    return issue;
+                });
+
+                appModule.render('partials/gfycat-block', {
+                    gfycatinfo: gfycatinfo
+                }, function(err, html) {
+                    callback(null, raw += html);
+                });
+            } else {
+                winston.warn('Encountered an error parsing GfyCat embed code, not continuing');
+                callback(null, raw);
+            }
+        });
+    };
+
+    // Initial setup
+    cache = require('lru-cache')({
+        maxAge: 1000*60*60*24,
+        max: 100
     });
-};
 
-var gfyWebm = function(gfycatKey, callback) {
-    var gfyWebm = gfycatKey.split('#')[1];
-    console.log('getting webm', gfyWebm);
+    module.exports = Embed;
+})();
 
-    request.get({
-        url: 'http://gfycat.com/cajax/get/' + gfycatKey + ''
-    }, function(err, response, body) {
-        if (response.statusCode === 200) {
-            callback(null, JSON.parse(body));
-        } else {
-            console.log('Line 75')
-            callback(err);
-        }
-    });
-};
 
-module.exports = Embed;
+
+
+
