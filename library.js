@@ -10,7 +10,7 @@
 
         GfyCatRegex = /<a href="(?:http|https?:\/\/)?(?:gfycat\.com)\/([\w\-_]+)">.+<\/a>/g,
         Embed = {},
-        cache, appModule;
+        appModule;
 
     var getGfyCat = function(gfyCatKey, callback) {
 
@@ -67,9 +67,6 @@
         }
 
         async.map(gfyCatKeys, function(gfyCatKey, next) {
-            if (cache.has(gfyCatKey)) {
-                next(null, cache.get(gfyCatKey));
-            } else {
                 getGfyCat(gfyCatKey, function(err, gfyCatObj) {
                     if (err) {
                         return next(err);
@@ -78,7 +75,6 @@
                     cache.set(gfyCatKey, gfyCatObj);
                     next(err, gfyCatObj);
                 });
-            }
         }, function(err, gfycatinfo) {
             if (!err) {
                 // Filter
@@ -97,12 +93,6 @@
             }
         });
     };
-
-    // Initial setup
-    cache = require('lru-cache')({
-        maxAge: 1000*60*60*24,
-        max: 100
-    });
 
     module.exports = Embed;
 })();
