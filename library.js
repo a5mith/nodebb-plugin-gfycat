@@ -59,7 +59,7 @@
             if (cache.has(gfycatKey)) {
                 next(null, cache.get(gfycatKey));
             } else {
-                getDiscog(gfycatKey, function(err, gfycatObj) {
+                getgfycat(gfycatKey, function(err, gfycatObj) {
                     if (err) {
                         return next(err);
                     }
