@@ -7,7 +7,7 @@
     "templates": "templates",
     "hooks": [
         { "hook": "action:app.load", "method": "init" },
-        { "hook": "filter:post.parse", "method": "parse", "priority": 6 }
+        { "hook": "filter:post.parse", "method": "parse", "priority": 4 }
     ]
 
 }
