@@ -19,7 +19,6 @@
                 if (!gfycatData) {
                     return callback(null, {});
                 }
-                console.log(gfycatData);
                 callback(null, {
                     width: gfycatData.width,
                     height: gfycatData.height,
@@ -30,7 +29,6 @@
                     numFrames: gfycatData.numFrames
                 });
             } else {
-                console.log(err, response)
                 callback(err);
             }
         });
