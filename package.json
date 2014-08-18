@@ -1,6 +1,6 @@
 {
   "name": "nodebb-plugin-gfycat",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "NodeBB GfyCat Plugin",
   "main": "library.js",
   "scripts": {
@@ -27,8 +27,6 @@
   },
   "readme": "",
   "readmeFilename": "README.md",
-  "_id": "nodebb-plugin-gfycat@0.0.1",
-  "_from": "nodebb-plugin-gfycat@~0.0.1",
     "dependencies": {
         "lru-cache": "^2.5.0",
         "request": "^2.34.0"
