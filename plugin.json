@@ -8,9 +8,6 @@
     "hooks": [
         { "hook": "action:app.load", "method": "init" },
         { "hook": "filter:post.parse", "method": "parse", "priority": 6 }
-    ],
-	"staticDirs": {
-        "css": "./static"
-    }
+    ]
 
 }
