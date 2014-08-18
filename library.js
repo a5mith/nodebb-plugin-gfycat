@@ -15,7 +15,7 @@
             url: 'http://gfycat.com/cajax/get/' + gfycatNum + ''
         }, function (err, response, body) {
             if (!err && response.statusCode === 200) {
-                var gfycatData = JSON.parse(body).results;
+                var gfycatData = JSON.parse(body).gfyItem;
                 if (!gfycatData) {
                     return callback(null, {});
                 }
