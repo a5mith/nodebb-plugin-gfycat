@@ -12,7 +12,7 @@
     var getgfycat = function(gfycatKey, callback) {
         var gfycatNum = gfycatKey.split('.com/')[1];
         request.get({
-            url: 'http://gfycat.com/cajax/get/' + GfyCatLink + '',
+            url: 'http://gfycat.com/cajax/get/' + gfycatNum + ''
         }, function (err, response, body) {
             if (!err && response.statusCode === 200) {
                 var gfycatData = JSON.parse(body).results[0];
