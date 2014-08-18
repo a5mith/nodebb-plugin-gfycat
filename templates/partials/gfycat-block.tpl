@@ -5,10 +5,5 @@
     <source type="video/mp4" src="{gfycatinfo.mp4Url}" id="mp4source">
     Not supported, please try the URL: <a href="{gfycatinfo.gifUrl}">{gfycatinfo.gifUrl}</a>.
 </video>
-    <div id="video-controls">
-        <button type="button" id="play-pause">Play</button>
-        <input type="range" id="seek-bar" value="0">
-        <button type="button" id="full-screen">Full-Screen</button>
-    </div>
 <!-- END gfycatinfo -->
 </div>
