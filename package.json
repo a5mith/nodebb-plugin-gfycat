@@ -1,6 +1,6 @@
 {
   "name": "nodebb-plugin-gfycat",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "NodeBB GfyCat Plugin",
   "main": "library.js",
   "scripts": {
