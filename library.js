@@ -6,7 +6,7 @@
         winston = module.parent.require('winston'),
         S = module.parent.require('string'),
         meta = module.parent.require('./meta'),
-        gfycatRegex = /<a href="(?:https?:\/\/)?(?:gfycat\.com)\/?([\w\-_]+)"><\/a>/gm,
+        gfycatRegex = /<a href="(?:http?:\/\/)?(?:gfycat\.com)\/?([\w\-_]+)"><\/a>/gm,
         Embed = {},
         cache, appModule;
     var getgfycat = function(gfycatKey, callback) {
