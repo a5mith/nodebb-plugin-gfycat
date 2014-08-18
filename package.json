@@ -1,5 +1,5 @@
 {
-  "name": "nodebb-plugin-gfytest",
+  "name": "nodebb-plugin-gfycat",
   "version": "0.0.2",
   "description": "NodeBB GfyCat Plugin",
   "main": "library.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/a5mith/nodebb-plugin-gfytest"
+    "url": "https://github.com/a5mith/nodebb-plugin-gfycat"
   },
   "keywords": [
     "nodebb",
@@ -19,16 +19,16 @@
   ],
   "author": {
     "name": "a5mith",
-    "email": "aaronsmith91@sky.com"
+    "email": "35hzcommunity@gmail.com"
   },
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/a5mith/nodebb-plugin-gfytest/issues"
+    "url": "https://github.com/a5mith/nodebb-plugin-gfycat/issues"
   },
   "readme": "",
   "readmeFilename": "README.md",
-  "_id": "nodebb-plugin-gfytest@0.0.1",
-  "_from": "nodebb-plugin-gfytest@~0.0.1",
+  "_id": "nodebb-plugin-gfycat@0.0.1",
+  "_from": "nodebb-plugin-gfycat@~0.0.1",
     "dependencies": {
         "lru-cache": "^2.5.0",
         "request": "^2.34.0"

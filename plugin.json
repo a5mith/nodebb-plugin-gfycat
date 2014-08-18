@@ -1,8 +1,8 @@
 {
-	"id": "nodebb-plugin-gfytest",
+	"id": "nodebb-plugin-gfycat",
 	"name": "NodeBB GfyCat Plugin",
 	"description": "NodeBB Plugin that allows users to embed Gfycat WebM files in their posts.",
-	"url": "https://github.com/a5mith/nodebb-plugin-gfytest",
+	"url": "https://github.com/a5mith/nodebb-plugin-gfycat",
 	"library": "./library.js",
     "templates": "templates",
     "hooks": [
