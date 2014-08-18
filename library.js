@@ -38,6 +38,7 @@
             res.render('partials/gfycat-block', {});
         }
         appModule = app;
+        if ( callback )
         callback();
     };
     Embed.parse = function(raw, callback) {
