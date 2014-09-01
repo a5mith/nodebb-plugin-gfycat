@@ -6,7 +6,7 @@
 	"library": "./library.js",
     "templates": "templates",
     "hooks": [
-        { "hook": "action:app.load", "method": "init" },
+        { "hook": "static:app.load", "method": "init" },
         { "hook": "filter:post.parse", "method": "parse", "priority": 4 }
     ]
 }
