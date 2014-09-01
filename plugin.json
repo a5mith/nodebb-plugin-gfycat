@@ -9,5 +9,4 @@
         { "hook": "action:app.load", "method": "init" },
         { "hook": "filter:post.parse", "method": "parse", "priority": 4 }
     ]
-
 }
