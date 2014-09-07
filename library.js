@@ -77,7 +77,7 @@
                     callback(null, raw += html);
                 });
             } else {
-                winston.warn('Encountered an error parsing gfycat embed code, not continuing');
+                winston.warn('Encountered an error parsing gfycat embed code, not continuing', err);
                 callback(null, raw);
             }
         });
