@@ -6,7 +6,7 @@
         winston = module.parent.require('winston'),
         S = module.parent.require('string'),
         meta = module.parent.require('./meta'),
-        gfycatRegex = /(?:http?:\/\/)?(?:gfycat\.com)\/?([\w\-_]+)/g,
+        gfycatRegex = /(?:https?:\/\/)?(?:gfycat\.com)\/?([\w\-_]+)/g,
         Embed = {},
         cache, appModule;
     var getgfycat = function(gfycatKey, callback) {
@@ -77,7 +77,7 @@
                     callback(null, raw += html);
                 });
             } else {
-                winston.warn('Encountered an error parsing gfycat embed code, not continuing', err);
+                winston.warn('Encountered an error parsing gfycat embed code, not continuing', raw);
                 callback(null, raw);
             }
         });
