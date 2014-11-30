@@ -33,18 +33,18 @@
             }
         });
     };
-    Embed.init = function(app, middleware, controllers, callback) {
+    Embed.init = function(data, callback) {
         function render(req, res, next) {
             res.render('partials/gfycat-block', {});
         }
-        appModule = app;
+        appModule = data.router;
         if ( callback )
         callback();
     };
-    Embed.parse = function(raw, callback) {
+    Embed.parse = function(data, callback) {
         var gfycatKeys = [],
             matches, cleanedText;
-        cleanedText = S(raw).stripTags().s;
+        cleanedText = S((raw ? data : data.postData.content)).stripTags().s;
         matches = cleanedText.match(gfycatRegex);
         if (matches && matches.length) {
             matches.forEach(function(match) {
@@ -74,11 +74,17 @@
                 appModule.render('partials/gfycat-block', {
                     gfycatinfo: gfycatinfo
                 }, function(err, html) {
-                    callback(null, raw += html);
+                    callback(null, data += html);
+                    if (raw) {
+                        var payload = data += html;
+                        } else {
+                        data.postData.content += html;
+                        }
+                    callback(null, payload || data);
                 });
             } else {
                 winston.warn('Encountered an error parsing gfycat embed code, not continuing', raw);
-                callback(null, raw);
+                callback(null, data);
             }
         });
     };
