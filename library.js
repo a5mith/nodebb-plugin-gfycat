@@ -85,6 +85,7 @@
                 });
             } else {
                 winston.warn('Encountered an error parsing gfycat embed code, not continuing', raw);
+                console.log('This is the data:', data)
                 callback(null, data);
             }
         });
