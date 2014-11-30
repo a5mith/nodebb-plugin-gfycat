@@ -74,7 +74,6 @@
                 appModule.render('partials/gfycat-block', {
                     gfycatinfo: gfycatinfo
                 }, function(err, html) {
-                    callback(null, data += html);
                     if (raw) {
                         var payload = data += html;
                         } else {
