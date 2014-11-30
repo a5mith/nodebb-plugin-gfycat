@@ -43,7 +43,6 @@
     };
     Embed.parse = function(data, callback) {
         var gfycatKeys = [],
-            ltrimRegex = /^\s+/,
             raw = typeof data !== 'object',
             matches, cleanedText;
         cleanedText = S((raw ? data : data.postData.content)).stripTags().s;
