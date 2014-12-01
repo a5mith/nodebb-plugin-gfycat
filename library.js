@@ -83,8 +83,8 @@
                     callback(null, payload || data);
                 });
             } else {
-                winston.warn('Encountered an error parsing gfycat embed code, not continuing', raw);
-                console.log('This is the data:', raw, gfycatinfo)
+                winston.warn('Encountered an error parsing gfycat embed code, not continuing');
+                console.log(err.stack);
                 callback(null, data);
             }
         });
