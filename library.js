@@ -6,7 +6,7 @@
 
 
     GfyCat.parse = function(postContent, callback) {
-        postContent = postContent.replace(/<a href="(?:https?:\/\/)?(?:gfycat\.com)\/?([\w\-_]+)">.+<\/a>/g, embed);
+        postContent = postContent.replace(/<a href="(?:https?:\/\/)?(?:gfycat\.com)\/?([\w\-_]+)">.+<\/a>/g, embedgfy);
         callback(null, postContent);
     };
 
