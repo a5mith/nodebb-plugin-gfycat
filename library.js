@@ -79,7 +79,7 @@
                         var payload = data += html;
                         } else {
                         data.postData.content += html;
-                        console.log(gfycatData);
+                        console.log(gfyItem);
                         }
                     callback(null, payload || data);
                 });
