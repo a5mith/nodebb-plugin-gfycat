@@ -78,7 +78,7 @@
                     if (raw) {
                         var payload = data += html;
                         } else {
-                        data.postData.content += html;
+                        data.postData.content = data.postData.content.replace(new RegExp('https://gfycat.com' + gfycatitem.gfyId, 'g'), html);
                         console.log(gfycatinfo);
                         }
                     callback(null, payload || data);
