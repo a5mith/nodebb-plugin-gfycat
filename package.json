@@ -30,8 +30,4 @@
   },
   "readme": "",
   "readmeFilename": "README.md",
-    "dependencies": {
-        "lru-cache": "^2.5.0",
-        "request": "^2.34.0"
-    }
 }
