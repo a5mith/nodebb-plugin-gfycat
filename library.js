@@ -78,7 +78,7 @@
                     if (raw) {
                         var payload = data += html;
                         } else {
-                        data.postData.content += raw;
+                        data.postData.content += html;
                         }
                     callback(null, payload || data);
                 });
