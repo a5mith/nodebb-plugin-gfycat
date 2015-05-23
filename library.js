@@ -78,7 +78,7 @@
                     if (raw) {
                         var payload = data += html;
                         } else {
-                        data.postData.content = data.postData.content.replace(new RegExp('https://gfycat.com' + gfycatNum, 'g'), html);;
+                        data.postData.content = data.postData.content.replace(new RegExp('https://gfycat.com' + gfycatData.gfyId, 'g'), html);;
                         }
                     callback(null, payload || data);
                 });
