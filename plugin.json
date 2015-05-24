@@ -6,6 +6,6 @@
 	"library": "./library.js",
     "templates": "templates",
     "hooks": [
-        { "hook": "filter:parse.post", "method": "parse", "callbacked": true }
+        { "hook": "filter:parse.post", "method": "parse", "callbacked": true },
     ]
 }
