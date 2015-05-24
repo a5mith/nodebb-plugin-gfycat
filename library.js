@@ -3,7 +3,7 @@
 
     var GfyCat = {},
         embedgfy = '<img class="gfyitem" data-id="$1" data-perimeter="true" />';
-    var gfycat = <a href="(?:https?:\/\/)?(?:gfycat\.com)\/?([\w\-_]+)">.+<\/a>/g;
+    var gfycat = /<a href="(?:https?:\/\/)?(?:gfycat\.com)\/?([\w\-_]+)">.+<\/a>/g;
 
     Embedly.parse = function(data, callback) {
         if (!data || !data.postData || !data.postData.content) {
